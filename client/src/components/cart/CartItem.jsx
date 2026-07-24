@@ -16,8 +16,6 @@ const CartItem = ({ pizza }) => {
   const displayPrice = (pizza.singlePizzaPrice || pizza.price) * pizza.quantity;
 
   const handleEdit = () => {
-    alert("Edit clicked");
-
     dispatch(
       openPizza({
         pizza,

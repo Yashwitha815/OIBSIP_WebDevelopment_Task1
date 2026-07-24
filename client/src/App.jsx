@@ -9,10 +9,10 @@ import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Offers from "./pages/Offers";
-
-import FloatingCart from "./components/cart/FloatingCart";
 import Wishlist from "./pages/Wishlist";
 
+import FloatingCart from "./components/cart/FloatingCart";
+import CustomizePizzaModal from "./components/pizza/CustomizePizzaModal";
 function App() {
   return (
     <BrowserRouter>
@@ -27,6 +27,9 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/wishlist" element={<Wishlist />} />
       </Routes>
+
+      {/* Global Modal */}
+      <CustomizePizzaModal />
 
       <FloatingCart />
 

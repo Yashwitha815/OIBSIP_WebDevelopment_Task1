@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 import "../../styles/CustomizePizzaModal.css";
 
 import { useEffect, useState } from "react";
@@ -21,20 +22,23 @@ function CustomizePizzaModal() {
     (state) => state.pizza,
   );
 
-  const [selectedSize, setSelectedSize] = useState(
-    () => selectedPizza?.size ?? "Medium",
-  );
+  // Default state
+  const [selectedSize, setSelectedSize] = useState("Medium");
+  const [selectedCrust, setSelectedCrust] = useState("regular");
+  const [selectedToppings, setSelectedToppings] = useState([]);
+  const [quantity, setQuantity] = useState(1);
 
-  const [selectedCrust, setSelectedCrust] = useState(
-    () => selectedPizza?.crust ?? "regular",
-  );
+  // ⭐ IMPORTANT: Load values whenever selectedPizza changes
+  useEffect(() => {
+    if (!selectedPizza) return;
 
-  const [selectedToppings, setSelectedToppings] = useState(
-    () => selectedPizza?.toppings ?? [],
-  );
+    setSelectedSize(selectedPizza.size || "Medium");
+    setSelectedCrust(selectedPizza.crust || "regular");
+    setSelectedToppings(selectedPizza.toppings || []);
+    setQuantity(selectedPizza.quantity || 1);
+  }, [selectedPizza]);
 
-  const [quantity, setQuantity] = useState(() => selectedPizza?.quantity ?? 1);
-
+  // Handle ESC key and body scroll
   useEffect(() => {
     if (!isOpen || !selectedPizza) return;
 
