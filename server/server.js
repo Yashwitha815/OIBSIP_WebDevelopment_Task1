@@ -1,7 +1,10 @@
-const express = require("express");
-const dotenv = require("dotenv");
-const cors = require("cors");
-const connectDB = require("./config/db");
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+
+import connectDB from "./config/db.js";
+import pizzaRoutes from "./routes/pizzaRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
 
 dotenv.config();
 
@@ -15,13 +18,12 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
-const pizzaRoutes = require("./routes/pizzaRoutes");
+app.use("/api/auth", authRoutes);
+app.use("/api/pizzas", pizzaRoutes);
 
 app.get("/", (req, res) => {
   res.send("🍕 PizzaVerse Backend Running...");
 });
-
-app.use("/api/pizzas", pizzaRoutes);
 
 const PORT = process.env.PORT || 5000;
 
