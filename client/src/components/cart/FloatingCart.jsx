@@ -1,7 +1,10 @@
 import "../../styles/FloatingCart.css";
+
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
+
 import { clearCart } from "../../features/cart/cartSlice";
+
 import toast from "react-hot-toast";
 
 function FloatingCart() {
@@ -18,7 +21,6 @@ function FloatingCart() {
     0,
   );
 
-  // 🔥 Use the SAME value that your Cart page uses
   const freeDeliveryLimit = 299;
 
   const amountLeft = Math.max(freeDeliveryLimit - subtotal, 0);
@@ -26,9 +28,11 @@ function FloatingCart() {
   const progress = Math.min((subtotal / freeDeliveryLimit) * 100, 100);
 
   const handleClearCart = () => {
-    const confirm = window.confirm("Are you sure you want to clear your cart?");
+    const confirmClear = window.confirm(
+      "Are you sure you want to clear your cart?",
+    );
 
-    if (!confirm) return;
+    if (!confirmClear) return;
 
     dispatch(clearCart());
 
@@ -43,7 +47,8 @@ function FloatingCart() {
 
   return (
     <div className="floating-cart">
-      {/* LEFT */}
+      {/* Left */}
+
       <div className="cart-left">
         <div className="cart-brand">
           <span className="cart-icon">🛒</span>
@@ -55,6 +60,7 @@ function FloatingCart() {
 
         <div className="items-card">
           <h2>{totalItems}</h2>
+
           <span>{totalItems === 1 ? "Item" : "Items"}</span>
         </div>
 
@@ -62,11 +68,12 @@ function FloatingCart() {
 
         <div className="total-card">
           <small>Total</small>
+
           <h2>₹{subtotal}</h2>
         </div>
       </div>
 
-      {/* CENTER */}
+      {/* Center */}
 
       <div className="delivery-section">
         {subtotal >= freeDeliveryLimit ? (
@@ -101,15 +108,15 @@ function FloatingCart() {
         )}
       </div>
 
-      {/* RIGHT */}
+      {/* Right */}
 
       <div className="cart-actions">
         <button className="clear-btn" onClick={handleClearCart}>
-          🗑 Clear Cart
+          🗑 Clear
         </button>
 
         <button className="view-btn" onClick={() => navigate("/cart")}>
-          🛒 View Cart
+          🛒 View Cart • ₹{subtotal}
         </button>
       </div>
     </div>

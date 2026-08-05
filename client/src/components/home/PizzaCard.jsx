@@ -1,10 +1,12 @@
 import "../../styles/PizzaCard.css";
-import { FaHeart, FaShoppingCart, FaStar } from "react-icons/fa";
+
+import { FaHeart, FaRegHeart, FaShoppingCart, FaStar } from "react-icons/fa";
 
 import { useDispatch, useSelector } from "react-redux";
 
 import { toggleWishlist } from "../../features/wishlist/wishlistSlice";
 import { openPizza } from "../../features/pizza/pizzaSlice";
+
 import toast from "react-hot-toast";
 
 function PizzaCard({ pizza }) {
@@ -14,52 +16,74 @@ function PizzaCard({ pizza }) {
 
   const isFavourite = wishlistItems.some((item) => item._id === pizza._id);
 
-  const handleAddToCart = (e) => {
-    e.stopPropagation();
-
-    dispatch(openPizza(pizza));
-
-    toast.success("Item Added", {
-      duration: 1000,
-    });
-  };
-
-  const handleWishlist = (e) => {
-    e.stopPropagation();
-
-    dispatch(toggleWishlist(pizza));
-
-    if (isFavourite) {
-      toast("Removed from Wishlist", {
-        icon: "💔",
-        duration: 1200,
-      });
-    } else {
-      toast.success("Added to Wishlist", {
-        icon: "❤️",
-        duration: 1200,
-      });
-    }
-  };
+  // ==========================
+  // Open Pizza Customization
+  // ==========================
 
   const handleOpenPizza = () => {
     dispatch(openPizza(pizza));
   };
 
+  // ==========================
+  // Add To Cart
+  // ==========================
+
+  const handleAddToCart = (e) => {
+    e.stopPropagation();
+
+    dispatch(openPizza(pizza));
+
+    toast.success(`${pizza.name} added to Cart 🍕`, {
+      duration: 1200,
+    });
+  };
+
+  // ==========================
+  // Wishlist
+  // ==========================
+
+  const handleWishlist = (e) => {
+    e.stopPropagation();
+
+    console.log("Heart Clicked ❤️");
+
+    dispatch(toggleWishlist(pizza));
+
+    if (isFavourite) {
+      toast(`${pizza.name} removed from Wishlist 💔`, {
+        duration: 1200,
+      });
+    } else {
+      toast.success(`${pizza.name} added to Wishlist ❤️`, {
+        duration: 1200,
+      });
+    }
+  };
+
   return (
     <div className="pizza-card" onClick={handleOpenPizza}>
+      {/* ==========================
+          IMAGE
+      ========================== */}
+
       <div className="card-image">
         <button
           className={`favorite-btn ${isFavourite ? "active-heart" : ""}`}
           onClick={handleWishlist}
         >
-          <FaHeart
-            className={isFavourite ? "heart-icon liked" : "heart-icon"}
-          />
+          {isFavourite ? (
+            <FaHeart className="heart-icon liked" />
+          ) : (
+            <FaRegHeart className="heart-icon" />
+          )}
         </button>
 
         <img src={pizza.image} alt={pizza.name} />
       </div>
+
+      {/* ==========================
+          CONTENT
+      ========================== */}
 
       <div className="pizza-content">
         <div className="pizza-top">
@@ -86,6 +110,7 @@ function PizzaCard({ pizza }) {
 
           <button className="add-btn" onClick={handleAddToCart}>
             <FaShoppingCart />
+
             <span>Add to Cart</span>
           </button>
         </div>

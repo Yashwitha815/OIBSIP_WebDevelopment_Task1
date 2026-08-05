@@ -1,29 +1,221 @@
-.sort-container {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 12px;
+/* ==========================
+   SORT
+========================== */
 
-  max-width: 1200px;
-  margin: 0 auto 40px;
-  padding: 0 20px;
+.sort-container{
+
+display:flex;
+
+justify-content:flex-end;
+
+align-items:center;
+
+gap:16px;
+
+max-width:1200px;
+
+margin:0 auto 40px;
+
+padding:0 20px;
+
 }
 
-.sort-container label {
-  font-weight: 600;
-  color: #444;
+.sort-container label{
+
+font-size:18px;
+
+font-weight:700;
+
+color:#222;
+
 }
 
-.sort-container select {
-  padding: 10px 16px;
-  border-radius: 10px;
-  border: 1px solid #ddd;
-  font-size: 15px;
-  cursor: pointer;
-  outline: none;
-  transition: 0.3s;
+/* ==========================
+   CUSTOM SELECT
+========================== */
+
+.custom-select{
+
+position:relative;
+
+width:220px;
+
 }
 
-.sort-container select:focus {
-  border-color: #ff5722;
+/* ==========================
+   BUTTON
+========================== */
+
+.select-btn{
+
+width:100%;
+
+height:46px;
+
+background:#FFF8F3;
+
+border:2px solid #FF6B35;
+
+border-radius:18px;
+
+padding:0 20px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+font-size:16px;
+
+font-weight:600;
+
+cursor:pointer;
+
+color:#333;
+
+transition:.3s;
+
+box-shadow:0 10px 25px rgba(255,107,53,.08);
+
+}
+
+.select-btn:hover{
+
+background:#FFF2EC;
+
+}
+
+.select-btn svg{
+
+transition:.3s;
+
+color:#FF6B35;
+
+}
+
+.rotate{
+
+transform:rotate(180deg);
+
+}
+
+/* ==========================
+   OPTIONS
+========================== */
+
+.options{
+
+position:absolute;
+
+top:68px;
+
+left:0;
+
+width:100%;
+
+background:white;
+
+border-radius:18px;
+
+overflow:hidden;
+
+box-shadow:0 18px 45px rgba(0,0,0,.15);
+
+animation:dropdown .25s ease;
+
+z-index:100;
+
+}
+
+/* ==========================
+   OPTION
+========================== */
+
+.option{
+
+padding:16px 20px;
+
+cursor:pointer;
+
+font-size:16px;
+
+font-weight:600;
+
+transition:.25s;
+
+color:#444;
+
+}
+
+.option:hover{
+
+background:#FFE4D7;
+
+color:#FF6B35;
+
+padding-left:28px;
+
+}
+
+.selected{
+
+background:#FF6B35;
+
+color:white;
+
+}
+
+.selected:hover{
+
+background:#FF6B35;
+
+color:white;
+
+}
+
+/* ==========================
+   ANIMATION
+========================== */
+
+@keyframes dropdown{
+
+from{
+
+opacity:0;
+
+transform:translateY(-10px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media(max-width:768px){
+
+.sort-container{
+
+flex-direction:column;
+
+align-items:stretch;
+
+}
+
+.custom-select{
+
+width:100%;
+
+}
+
 }

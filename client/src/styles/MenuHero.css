@@ -1,6 +1,6 @@
 .menu-hero {
   background: linear-gradient(135deg, #fff5ef, #ffe7da);
-  padding: 90px 20px;
+  padding: 10px 10px;
   text-align: center;
 }
 
@@ -20,13 +20,13 @@
 }
 
 .menu-hero h1 {
-  font-size: 54px;
+  font-size: 55px;
   color: #222;
   margin-bottom: 20px;
 }
 
 .menu-hero p {
-  font-size: 19px;
+  font-size: 17px;
   color: #666;
   line-height: 1.8;
 }

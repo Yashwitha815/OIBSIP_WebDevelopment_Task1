@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 
@@ -22,10 +22,27 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/menu" element={<Menu />} />
         <Route path="/offers" element={<Offers />} />
-        <Route path="/cart" element={<Cart />} />
+
+        <Route
+          path="/cart"
+          element={
+            <ProtectedRoute>
+              <Cart />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/wishlist"
+          element={
+            <ProtectedRoute>
+              <Wishlist />
+            </ProtectedRoute>
+          }
+        />
+
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/wishlist" element={<Wishlist />} />
       </Routes>
 
       {/* Global Modal */}

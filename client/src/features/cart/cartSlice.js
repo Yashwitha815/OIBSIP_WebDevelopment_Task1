@@ -1,13 +1,30 @@
 import { createSlice } from "@reduxjs/toolkit";
-// Load cart from localStorage
-const savedCart = localStorage.getItem("cartItems");
 
-const initialState = {
-  cartItems: savedCart ? JSON.parse(savedCart) : [],
+// ==========================
+// LocalStorage Helpers
+// ==========================
+
+const getCartKey = () => {
+  const user = JSON.parse(localStorage.getItem("userInfo"));
+
+  return user?.email ? `cart_${user.email}` : "cart_guest";
+};
+
+const loadCart = () => {
+  const savedCart = localStorage.getItem(getCartKey());
+  return savedCart ? JSON.parse(savedCart) : [];
 };
 
 const saveCart = (cartItems) => {
-  localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  localStorage.setItem(getCartKey(), JSON.stringify(cartItems));
+};
+
+// ==========================
+// Initial State
+// ==========================
+
+const initialState = {
+  cartItems: loadCart(),
 };
 
 const cartSlice = createSlice({
@@ -16,6 +33,14 @@ const cartSlice = createSlice({
   initialState,
 
   reducers: {
+    // ==========================
+    // Load Current User Cart
+    // ==========================
+
+    loadUserCart: (state) => {
+      state.cartItems = loadCart();
+    },
+
     // ==========================
     // Add to Cart
     // ==========================
@@ -46,13 +71,10 @@ const cartSlice = createSlice({
     updateCartItem: (state, action) => {
       const { oldCartId, updatedItem } = action.payload;
 
-      // Remove the old item
       state.cartItems = state.cartItems.filter(
         (item) => item.cartId !== oldCartId
       );
 
-      // If the updated customization already exists,
-      // merge quantities instead of creating duplicates
       const existingItem = state.cartItems.find(
         (item) => item.cartId === updatedItem.cartId
       );
@@ -129,6 +151,7 @@ const cartSlice = createSlice({
 });
 
 export const {
+  loadUserCart,
   addToCart,
   updateCartItem,
   increaseQuantity,

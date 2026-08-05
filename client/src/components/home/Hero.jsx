@@ -3,9 +3,7 @@ function Hero() {
   return (
     <section className="hero">
       <div className="hero-content">
-        <span className="hero-badge">
-          🔥 Hot & Fresh Pizza
-        </span>
+        <span className="hero-badge">🔥 Hot & Fresh Pizza</span>
 
         <h1>
           Delicious Pizza <br />
@@ -13,13 +11,11 @@ function Hero() {
         </h1>
 
         <p>
-          Fresh ingredients, cheesy toppings and lightning-fast
-          delivery. Order your favourite pizza anytime, anywhere.
+          <i>
+            Fresh ingredients, cheesy toppings and lightning-fast delivery.
+            Order your favourite pizza anytime, anywhere.
+          </i>
         </p>
-
-        <button className="hero-btn">
-          🍕 Order Now
-        </button>
       </div>
 
       <div className="hero-image">

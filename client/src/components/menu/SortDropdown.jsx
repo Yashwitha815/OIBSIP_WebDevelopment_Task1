@@ -1,20 +1,76 @@
 import "../../styles/SortDropdown.css";
+import { useState, useRef, useEffect } from "react";
+import { FaChevronDown } from "react-icons/fa";
 
 function SortDropdown({ sortOption, setSortOption }) {
+  const [open, setOpen] = useState(false);
+
+  const dropdownRef = useRef();
+
+  const options = [
+    {
+      value: "default",
+      label: "🍕 Featured",
+    },
+    {
+      value: "priceLow",
+      label: "🟠 Price: Low to High",
+    },
+    {
+      value: "priceHigh",
+      label: "🟠 Price: High to Low",
+    },
+    {
+      value: "nameAZ",
+      label: "🟠 Name: A to Z",
+    },
+  ];
+
+  const selected =
+    options.find((item) => item.value === sortOption) || options[0];
+
+  useEffect(() => {
+    const close = (e) => {
+      if (!dropdownRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener("click", close);
+
+    return () => document.removeEventListener("click", close);
+  }, []);
+
   return (
     <div className="sort-container">
-      <label htmlFor="sort">Sort By:</label>
+      <label>Sort By:</label>
 
-      <select
-        id="sort"
-        value={sortOption}
-        onChange={(e) => setSortOption(e.target.value)}
-      >
-        <option value="default">Featured</option>
-        <option value="priceLow">Price: Low to High</option>
-        <option value="priceHigh">Price: High to Low</option>
-        <option value="nameAZ">Name: A to Z</option>
-      </select>
+      <div className="custom-select" ref={dropdownRef}>
+        <button className="select-btn" onClick={() => setOpen(!open)}>
+          {selected.label}
+
+          <FaChevronDown className={open ? "rotate" : ""} />
+        </button>
+
+        {open && (
+          <div className="options">
+            {options.map((option) => (
+              <div
+                key={option.value}
+                className={`option ${
+                  sortOption === option.value ? "selected" : ""
+                }`}
+                onClick={() => {
+                  setSortOption(option.value);
+                  setOpen(false);
+                }}
+              >
+                {option.label}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

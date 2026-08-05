@@ -10,6 +10,7 @@ const addressSchema = new mongoose.Schema(
     state: String,
     pincode: String,
     landmark: String,
+
     isDefault: {
       type: Boolean,
       default: false,
@@ -20,6 +21,10 @@ const addressSchema = new mongoose.Schema(
 
 const userSchema = new mongoose.Schema(
   {
+    // ==========================
+    // Basic Information
+    // ==========================
+
     name: {
       type: String,
       required: true,
@@ -40,6 +45,43 @@ const userSchema = new mongoose.Schema(
       minlength: 6,
     },
 
+    // ==========================
+    // Email Verification
+    // ==========================
+
+    isVerified: {
+      type: Boolean,
+      default: false,
+    },
+
+    verificationToken: {
+      type: String,
+      default: null,
+    },
+
+    verificationTokenExpires: {
+      type: Date,
+      default: null,
+    },
+
+    // ==========================
+    // Forgot Password
+    // ==========================
+
+    resetPasswordToken: {
+      type: String,
+      default: null,
+    },
+
+    resetPasswordExpires: {
+      type: Date,
+      default: null,
+    },
+
+    // ==========================
+    // Profile
+    // ==========================
+
     phone: {
       type: String,
       default: "",
@@ -50,11 +92,19 @@ const userSchema = new mongoose.Schema(
       default: "",
     },
 
+    // ==========================
+    // Role
+    // ==========================
+
     role: {
       type: String,
       enum: ["user", "admin"],
       default: "user",
     },
+
+    // ==========================
+    // Addresses
+    // ==========================
 
     addresses: [addressSchema],
   },

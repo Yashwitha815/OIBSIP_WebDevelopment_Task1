@@ -1,7 +1,22 @@
+import "../styles/auth/Register.css";
+
+import AuthHero from "../components/auth/AuthHero";
+import RegisterForm from "../components/auth/RegisterForm";
+
 function Register() {
   return (
-    <div style={{ padding: "100px", textAlign: "center" }}>
-      <h1>📝 Register Page</h1>
+    <div className="register-page">
+      <div className="register-container">
+        {/* Left Side */}
+        <div className="register-left">
+          <AuthHero />
+        </div>
+
+        {/* Right Side */}
+        <div className="register-right">
+          <RegisterForm />
+        </div>
+      </div>
     </div>
   );
 }

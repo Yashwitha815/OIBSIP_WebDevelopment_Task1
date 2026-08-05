@@ -1,18 +1,36 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const savedWishlist = localStorage.getItem("wishlistItems");
+// ==========================
+// LocalStorage Helpers
+// ==========================
 
-const initialState = {
-  wishlistItems: savedWishlist
-    ? JSON.parse(savedWishlist)
-    : [],
+const getWishlistKey = () => {
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+
+  const email = userInfo?.user?.email;
+
+  return email ? `wishlist_${email}` : "wishlist_guest";
 };
 
-const saveWishlist = (items) => {
+const loadWishlist = () => {
+  const savedWishlist = localStorage.getItem(getWishlistKey());
+
+  return savedWishlist ? JSON.parse(savedWishlist) : [];
+};
+
+const saveWishlist = (wishlistItems) => {
   localStorage.setItem(
-    "wishlistItems",
-    JSON.stringify(items)
+    getWishlistKey(),
+    JSON.stringify(wishlistItems)
   );
+};
+
+// ==========================
+// Initial State
+// ==========================
+
+const initialState = {
+  wishlistItems: loadWishlist(),
 };
 
 const wishlistSlice = createSlice({
@@ -21,47 +39,52 @@ const wishlistSlice = createSlice({
   initialState,
 
   reducers: {
+    // ==========================
+    // Load Logged-in User Wishlist
+    // ==========================
+
+    loadUserWishlist: (state) => {
+      state.wishlistItems = loadWishlist();
+    },
+
+    // ==========================
+    // Toggle Wishlist
+    // ==========================
 
     toggleWishlist: (state, action) => {
-
       const pizza = action.payload;
 
       const exists = state.wishlistItems.find(
-        item => item._id === pizza._id
+        (item) => item._id === pizza._id
       );
 
       if (exists) {
-
-        state.wishlistItems =
-          state.wishlistItems.filter(
-            item => item._id !== pizza._id
-          );
-
+        state.wishlistItems = state.wishlistItems.filter(
+          (item) => item._id !== pizza._id
+        );
       } else {
-
         state.wishlistItems.push(pizza);
-
       }
 
       saveWishlist(state.wishlistItems);
-
     },
 
-    clearWishlist: (state) => {
+    // ==========================
+    // Clear Wishlist
+    // ==========================
 
+    clearWishlist: (state) => {
       state.wishlistItems = [];
 
       saveWishlist([]);
-
-    }
-
-  }
-
+    },
+  },
 });
 
 export const {
   toggleWishlist,
-  clearWishlist
+  clearWishlist,
+  loadUserWishlist,
 } = wishlistSlice.actions;
 
 export default wishlistSlice.reducer;

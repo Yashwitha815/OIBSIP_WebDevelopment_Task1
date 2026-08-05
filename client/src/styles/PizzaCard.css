@@ -1,139 +1,89 @@
-/* ==========================
+/* ==========================================
    PIZZA CARD
-========================== */
+========================================== */
 
 .pizza-card {
   background: #fff;
-  border-radius: 20px;
+  border-radius: 18px;
   overflow: hidden;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
+
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+
+  transition: all 0.35s ease;
+
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
 }
 
 .pizza-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  transform: translateY(-6px);
+
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
 }
 
-/* ==========================
+/* ==========================================
    IMAGE
-========================== */
+========================================== */
 
+.favorite-btn {
+  position: absolute;
+
+  top: 12px;
+  right: 12px;
+
+  width: 40px;
+  height: 40px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(255,255,255,.95);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+
+  z-index: 100;      /* IMPORTANT */
+  pointer-events: auto;
+
+  font-size: 18px;
+
+  transition: .3s;
+}
 .card-image {
   position: relative;
+  overflow: hidden;
 }
 
 .card-image img {
   width: 100%;
-  height: 220px;
+
+  height: 180px;
+
   object-fit: cover;
+
+  transition: transform 0.35s ease;
 }
 
-/* ==========================
-   FAVORITE BUTTON
-========================== */
-
-.favorite-btn{
-
-    position:absolute;
-
-    top:15px;
-
-    right:15px;
-
-    width:46px;
-
-    height:46px;
-
-    border:none;
-
-    border-radius:50%;
-
-    background:rgba(255,255,255,.95);
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    cursor:pointer;
-
-    font-size:20px;
-
-    color:#9CA3AF;
-
-    box-shadow:0 8px 20px rgba(0,0,0,.18);
-
-    transition:all .3s ease;
-
+.pizza-card:hover .card-image img {
+  transform: scale(1.05);
 }
 
-.favorite-btn:hover{
-
-    transform:translateY(-3px) scale(1.08);
-
-    background:white;
-
-    color:#FF3B5C;
-
-}
-
-.favorite-btn.active-heart{
-
-    color:#FF3B5C;
-
-    background:white;
-
-    box-shadow:
-0 0 10px rgba(255,59,92,.25),
-0 0 22px rgba(255,59,92,.35),
-0 0 36px rgba(255,59,92,.20);
-
-    animation:heartBeat .45s ease;
-
-}
-
-.favorite-btn svg{
-
-    transition:.3s;
-
-}
-
-.favorite-btn.active-heart svg{
-
-    transform:scale(1.15);
-
-}
-
-@keyframes heartBeat{
-
-    0%{
-
-        transform:scale(.7);
-
-    }
-
-    50%{
-
-        transform:scale(1.25);
-
-    }
-
-    100%{
-
-        transform:scale(1);
-
-    }
-
-}
-
-/* ==========================
+/* ==========================================
    CONTENT
-========================== */
+========================================== */
 
 .pizza-content {
-  padding: 20px;
+  padding: 16px;
+
+  display: flex;
+  flex-direction: column;
+
+  flex: 1;
 }
 
 .pizza-top {
@@ -141,43 +91,53 @@
   justify-content: space-between;
   align-items: center;
 
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .pizza-top h3 {
-  font-size: 22px;
+  font-size: 20px;
+
   color: #222;
+
+  font-weight: 700;
 }
 
-/* ==========================
+/* ==========================================
    RATING
-========================== */
+========================================== */
 
 .rating {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
 
   color: #f4b400;
+
+  font-size: 14px;
+
   font-weight: 600;
 }
 
-/* ==========================
+/* ==========================================
    CATEGORY
-========================== */
+========================================== */
 
 .category {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
-  padding: 6px 14px;
+  padding: 5px 12px;
 
-  border-radius: 50px;
+  border-radius: 30px;
 
   color: white;
-  font-size: 13px;
+
+  font-size: 12px;
+
   font-weight: 600;
 
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
 
 .veg {
@@ -188,77 +148,135 @@
   background: #d32f2f;
 }
 
-/* ==========================
+/* ==========================================
    DESCRIPTION
-========================== */
+========================================== */
 
 .description {
   color: #666;
-  line-height: 1.6;
-  min-height: 50px;
-  margin-bottom: 20px;
+
+  font-size: 14px;
+
+  line-height: 1.5;
+
+  min-height: 42px;
+
+  margin-bottom: 16px;
 }
 
-/* ==========================
+/* ==========================================
    FOOTER
-========================== */
+========================================== */
 
 .pizza-bottom {
   display: flex;
+
   justify-content: space-between;
+
   align-items: center;
+
+  margin-top: auto;
 }
+
+/* ==========================================
+   PRICE
+========================================== */
 
 .price {
   color: #ff5722;
-  font-size: 28px;
+
+  font-size: 24px;
+
+  font-weight: 700;
 }
 
-/* ==========================
-   BUTTON
-========================== */
+/* ==========================================
+   ADD BUTTON
+========================================== */
 
 .add-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  display: inline-flex;
 
-  padding: 12px 18px;
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 6px;
+
+  padding: 10px 16px;
 
   border: none;
-  border-radius: 10px;
 
-  background: #ff5722;
+  border-radius: 8px;
+
+  background: linear-gradient(135deg, #ff7b29, #ff5722);
+
   color: white;
 
-  font-size: 15px;
+  font-size: 14px;
+
   font-weight: 600;
 
   cursor: pointer;
 
-  transition: 0.3s;
+  transition: all .3s ease;
 }
 
 .add-btn:hover {
-  background: #e64a19;
+  transform: translateY(-2px);
+
+  background: linear-gradient(135deg, #ff6a18, #e64a19);
+
+  box-shadow: 0 10px 20px rgba(255, 87, 34, .25);
 }
 
-/* ==========================
+.add-btn svg {
+  font-size: 15px;
+}
+
+
+/* ==========================================
    RESPONSIVE
-========================== */
+========================================== */
+
+@media (max-width: 992px) {
+
+  .pizza-grid {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+  }
+
+  .card-image img {
+    height: 170px;
+  }
+
+  .pizza-top h3 {
+    font-size: 18px;
+  }
+
+  .price {
+    font-size: 22px;
+  }
+
+}
 
 @media (max-width: 768px) {
+
+  .pizza-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+  }
 
   .pizza-top {
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
+    gap: 8px;
   }
 
   .pizza-bottom {
     flex-direction: column;
     align-items: flex-start;
-    gap: 15px;
+    gap: 12px;
   }
 
   .add-btn {
@@ -266,90 +284,105 @@
     justify-content: center;
   }
 
+  .card-image img {
+    height: 170px;
+  }
+
+}
+
+@media (max-width: 480px) {
+
   .pizza-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 320px));
+    grid-template-columns: 1fr;
+  }
+
+  .pizza-content {
+    padding: 14px;
+  }
+
+  .pizza-top h3 {
+    font-size: 18px;
+  }
+
+  .description {
+    font-size: 13px;
+  }
+
+  .price {
+    font-size: 20px;
+  }
+
+}
+/* ==========================================
+   FAVORITE BUTTON
+========================================== */
+
+.favorite-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+
+  width: 42px;
+  height: 42px;
+
+  display: flex;
   justify-content: center;
-  gap: 30px;
-}
-}
+  align-items: center;
 
-/* ============================
-   Wishlist Heart
-============================ */
+  border: none;
+  border-radius: 50%;
 
-.favorite-btn{
+  background: rgba(255,255,255,.95);
 
-    transition:.3s;
+  cursor: pointer;
 
-}
+  z-index: 999;
 
-.favorite-btn:hover{
+  opacity: 1;
 
-    transform:scale(1.15);
-
+  transition: all .3s ease;
 }
 
-.favorite-btn.active-heart{
-
-    color:#FF3B5C;
-
-    background:white;
-
-    animation:heartBeat .35s ease;
-
+.favorite-btn:hover {
+  background: white;
+  transform: translateY(-2px) scale(1.08);
 }
 
-@keyframes heartBeat{
-
-    0%{
-
-        transform:scale(.7);
-
-    }
-
-    50%{
-
-        transform:scale(1.3);
-
-    }
-
-    100%{
-
-        transform:scale(1);
-
-    }
-
-}
-
-/* ==========================
-   HEART ICON ANIMATION
-========================== */
+/* Default outline heart */
 
 .heart-icon {
-  transition: all 0.3s ease;
+  font-size: 20px;
+  color: #9CA3AF;   /* Always visible grey */
+  transition: all .3s ease;
 }
+
+/* Hover effect */
 
 .favorite-btn:hover .heart-icon {
-  transform: scale(1.15);
+  color: #FF3B5C;
 }
 
-.favorite-btn.active-heart .heart-icon {
-  animation: heartPop 0.45s ease;
+/* Filled heart */
+
+.favorite-btn.active-heart .heart-icon,
+.heart-icon.liked {
+  color: #FF3B5C;
+  animation: heartPop .35s ease;
+  filter: drop-shadow(0 0 6px rgba(255,59,92,.35));
 }
 
 @keyframes heartPop {
 
   0% {
-    transform: scale(0.6);
+    transform: scale(.7);
   }
 
   40% {
-    transform: scale(1.45);
+    transform: scale(1.3);
   }
 
   70% {
-    transform: scale(1.1);
+    transform: scale(.95);
   }
 
   100% {
