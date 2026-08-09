@@ -11,9 +11,7 @@ function RegisterForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { loading, success, error, message } = useSelector(
-    (state) => state.auth,
-  );
+  const { loading, error, message } = useSelector((state) => state.auth);
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
@@ -28,19 +26,13 @@ function RegisterForm() {
 
   const { name, email, password, confirmPassword, acceptedTerms } = formData;
 
+  // Show only backend errors
   useEffect(() => {
     if (error) {
       toast.error(message);
+      dispatch(reset());
     }
-
-    if (success) {
-      toast.success("Registration Successful 🎉");
-
-      navigate("/login");
-    }
-
-    dispatch(reset());
-  }, [error, success, message, navigate, dispatch]);
+  }, [error, message, dispatch]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -87,12 +79,12 @@ function RegisterForm() {
     return true;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!validateForm()) return;
 
-    dispatch(
+    const result = await dispatch(
       register({
         name,
         email,
@@ -100,6 +92,16 @@ function RegisterForm() {
         confirmPassword,
       }),
     );
+
+    if (register.fulfilled.match(result)) {
+      toast.success(
+        "🎉 Registration successful! Please check your email and verify your account before logging in.",
+      );
+
+      dispatch(reset());
+
+      navigate("/login");
+    }
   };
 
   return (
@@ -217,7 +219,7 @@ function RegisterForm() {
           </label>
         </div>
 
-        {/* Button */}
+        {/* Submit */}
 
         <button className="register-btn" type="submit" disabled={loading}>
           {loading ? "Creating Account..." : "Create Account"}

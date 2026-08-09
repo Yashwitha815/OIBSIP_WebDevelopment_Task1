@@ -1,9 +1,10 @@
 import "../styles/Login.css";
+import { Link } from "react-router-dom";
 
 import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 
 import { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import toast from "react-hot-toast";
@@ -122,6 +123,10 @@ function Login() {
               />
             )}
           </div>
+
+          <Link to="/forgot-password" className="forgot-password-link">
+            Forgot Password?
+          </Link>
 
           {/* OPTIONS */}
 
