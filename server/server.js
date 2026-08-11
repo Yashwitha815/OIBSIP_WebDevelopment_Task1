@@ -5,6 +5,8 @@ import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import pizzaRoutes from "./routes/pizzaRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
+import inventoryRoutes from "./routes/inventoryRoutes.js";
+import orderRoutes from "./routes/orderRoutes.js";
 
 dotenv.config();
 
@@ -29,7 +31,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use("/api/auth", authRoutes);
+app.use("/api/inventory", inventoryRoutes);
 app.use("/api/pizzas", pizzaRoutes);
+app.use("/api/orders", orderRoutes);
 
 app.get("/", (req, res) => {
   res.send("🍕 PizzaVerse Backend Running...");

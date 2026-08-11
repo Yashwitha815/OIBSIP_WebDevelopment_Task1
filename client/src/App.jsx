@@ -15,6 +15,10 @@ import VerifyEmail from "./pages/VerifyEmail";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 
+import AdminLogin from "./pages/AdminLogin";
+import AdminDashboard from "./pages/AdminDashboard";
+import AdminOrders from "./pages/AdminOrders";
+
 import FloatingCart from "./components/cart/FloatingCart";
 import CustomizePizzaModal from "./components/pizza/CustomizePizzaModal";
 
@@ -24,12 +28,20 @@ function App() {
       <Navbar />
 
       <Routes>
-        {/* Public Pages */}
+        {/* ==================================================
+            PUBLIC PAGES
+        ================================================== */}
+
         <Route path="/" element={<Home />} />
+
         <Route path="/menu" element={<Menu />} />
+
         <Route path="/offers" element={<Offers />} />
 
-        {/* Authentication */}
+        {/* ==================================================
+            USER AUTHENTICATION
+        ================================================== */}
+
         <Route path="/login" element={<Login />} />
 
         <Route path="/register" element={<Register />} />
@@ -40,7 +52,18 @@ function App() {
 
         <Route path="/reset-password/:token" element={<ResetPassword />} />
 
-        {/* Protected Pages */}
+        {/* ==================================================
+            ADMIN LOGIN
+        ================================================== */}
+
+        <Route path="/admin/login" element={<AdminLogin />} />
+
+        <Route path="/admin/orders" element={<AdminOrders />} />
+
+        {/* ==================================================
+            USER PROTECTED PAGES
+        ================================================== */}
+
         <Route
           path="/cart"
           element={
@@ -58,12 +81,20 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        {/* ==================================================
+            ADMIN DASHBOARD
+        ================================================== */}
+
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
       </Routes>
 
-      {/* Global Modal */}
+      {/* ==================================================
+          GLOBAL COMPONENTS
+      ================================================== */}
+
       <CustomizePizzaModal />
 
-      {/* Floating Cart */}
       <FloatingCart />
 
       <Footer />

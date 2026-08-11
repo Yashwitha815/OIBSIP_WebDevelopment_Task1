@@ -1,0 +1,655 @@
+/* =========================================================
+   PIZZAVERSE ADMIN DASHBOARD
+   Compact / Smaller Layout
+========================================================= */
+
+.admin-dashboard {
+  min-height: 100vh;
+  display: flex;
+  background: #fff8f3;
+  color: #222;
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.admin-sidebar {
+  width: 200px;
+  min-height: 100vh;
+
+  background: #ffffff;
+  border-right: 1px solid #eeeeee;
+
+  padding: 22px 14px;
+
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+
+  flex-shrink: 0;
+}
+
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.admin-brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  padding: 0 8px 20px;
+
+  border-bottom: 1px solid #eeeeee;
+}
+
+.admin-brand > span {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #fff1e9;
+  border-radius: 11px;
+
+  font-size: 23px;
+}
+
+.admin-brand h2 {
+  margin: 0;
+
+  color: #ff6427;
+
+  font-size: 19px;
+  font-weight: 800;
+}
+
+.admin-brand p {
+  margin: 2px 0 0;
+
+  color: #999;
+
+  font-size: 11px;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.admin-nav {
+  display: flex;
+  flex-direction: column;
+
+  gap: 6px;
+
+  margin-top: 22px;
+}
+
+.admin-nav-item {
+  width: 100%;
+
+  padding: 11px 12px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: transparent;
+
+  color: #666;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.admin-nav-item:hover {
+  background: #fff1e9;
+  color: #ff6427;
+}
+
+.admin-nav-item.active {
+  background: #ff6427;
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+.admin-logout {
+  width: 100%;
+
+  margin-top: auto;
+  margin-bottom: 55px;
+
+  padding: 11px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #fff1e9;
+
+  color: #ff6427;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.admin-logout:hover {
+  background: #ffe4d8;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
+
+.admin-main {
+  flex: 1;
+
+  min-width: 0;
+
+  padding: 28px 35px;
+
+  box-sizing: border-box;
+
+  overflow-x: hidden;
+}
+
+
+/* =========================================================
+   TOP BAR
+========================================================= */
+
+.admin-topbar {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 25px;
+}
+
+.admin-topbar h1 {
+  margin: 0;
+
+  color: #222;
+
+  font-size: 27px;
+  font-weight: 700;
+}
+
+.admin-topbar p {
+  margin: 5px 0 0;
+
+  color: #888;
+
+  font-size: 14px;
+}
+
+.admin-profile {
+  padding: 8px 14px;
+
+  background: #ffffff;
+
+  border-radius: 10px;
+
+  box-shadow:
+    0 3px 12px rgba(0, 0, 0, 0.05);
+
+  color: #444;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   INVENTORY SECTION
+========================================================= */
+
+.inventory-section {
+  width: 100%;
+}
+
+.section-heading {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 17px;
+}
+
+.section-heading h2 {
+  margin: 0;
+
+  color: #222;
+
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.section-heading p {
+  margin: 4px 0 0;
+
+  color: #888;
+
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   REFRESH BUTTON
+========================================================= */
+
+.refresh-btn {
+  padding: 8px 13px;
+
+  border: 1px solid #ff6427;
+  border-radius: 9px;
+
+  background: #ffffff;
+
+  color: #ff6427;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.refresh-btn:hover {
+  background: #ff6427;
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   INVENTORY GRID
+========================================================= */
+
+.inventory-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 16px;
+}
+
+
+/* =========================================================
+   INVENTORY CARD
+========================================================= */
+
+.inventory-card {
+  background: #ffffff;
+
+  border-radius: 15px;
+
+  padding: 18px;
+
+  box-sizing: border-box;
+
+  box-shadow:
+    0 5px 18px rgba(0, 0, 0, 0.05);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.inventory-card:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 9px 24px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================================
+   CARD TOP
+========================================================= */
+
+.inventory-card-top {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+/* =========================================================
+   INVENTORY ICON
+========================================================= */
+
+.inventory-icon {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 11px;
+
+  background: #fff1e9;
+
+  font-size: 22px;
+}
+
+
+/* =========================================================
+   STOCK STATUS
+========================================================= */
+
+.stock-status {
+  padding: 5px 8px;
+
+  border-radius: 18px;
+
+  background: #eaf8ef;
+
+  color: #28a745;
+
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.stock-status.low {
+  background: #fff0f0;
+
+  color: #e53935;
+}
+
+
+/* =========================================================
+   ITEM NAME
+========================================================= */
+
+.inventory-card h3 {
+  margin: 15px 0 6px;
+
+  color: #222;
+
+  font-size: 16px;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   QUANTITY
+========================================================= */
+
+.quantity {
+  display: flex;
+
+  align-items: baseline;
+
+  gap: 5px;
+
+  margin-bottom: 12px;
+}
+
+.quantity strong {
+  color: #222;
+
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.quantity span {
+  color: #999;
+
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   STOCK BAR
+========================================================= */
+
+.stock-bar {
+  width: 100%;
+  height: 6px;
+
+  overflow: hidden;
+
+  border-radius: 10px;
+
+  background: #eeeeee;
+}
+
+.stock-progress {
+  height: 100%;
+
+  min-width: 3%;
+
+  border-radius: 10px;
+
+  background: #ff6427;
+
+  transition: width 0.3s ease;
+}
+
+.stock-progress.low {
+  background: #e53935;
+}
+
+
+/* =========================================================
+   LOW STOCK THRESHOLD
+========================================================= */
+
+.threshold {
+  margin: 9px 0 0;
+
+  color: #999;
+
+  font-size: 11px;
+}
+
+.threshold strong {
+  color: #666;
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.inventory-loading {
+  padding: 45px;
+
+  background: #ffffff;
+
+  border-radius: 15px;
+
+  color: #888;
+
+  text-align: center;
+
+  font-size: 14px;
+
+  box-shadow:
+    0 5px 18px rgba(0, 0, 0, 0.05);
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.inventory-empty {
+  padding: 45px;
+
+  background: #ffffff;
+
+  border-radius: 15px;
+
+  color: #888;
+
+  text-align: center;
+
+  font-size: 14px;
+
+  box-shadow:
+    0 5px 18px rgba(0, 0, 0, 0.05);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1200px) {
+
+  .admin-sidebar {
+    width: 190px;
+  }
+
+  .admin-main {
+    padding: 25px;
+  }
+
+  .inventory-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+}
+
+
+/* =========================================================
+   SMALL TABLET
+========================================================= */
+
+@media (max-width: 850px) {
+
+  .admin-sidebar {
+    width: 180px;
+  }
+
+  .admin-main {
+    padding: 22px 18px;
+  }
+
+  .admin-topbar h1 {
+    font-size: 24px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+  .admin-dashboard {
+    display: block;
+  }
+
+  .admin-sidebar {
+    width: 100%;
+
+    min-height: auto;
+
+    padding: 14px;
+
+    border-right: none;
+
+    border-bottom: 1px solid #eeeeee;
+  }
+
+  .admin-brand {
+    padding-bottom: 14px;
+  }
+
+  .admin-nav {
+    flex-direction: row;
+
+    margin-top: 14px;
+  }
+
+  .admin-nav-item {
+    justify-content: center;
+  }
+
+  .admin-logout {
+    margin-top: 14px;
+  }
+
+  .admin-main {
+    padding: 22px 14px;
+  }
+
+  .admin-topbar {
+    align-items: flex-start;
+
+    gap: 12px;
+  }
+
+  .admin-profile {
+    display: none;
+  }
+
+  .section-heading {
+    align-items: flex-start;
+
+    gap: 12px;
+  }
+
+  .inventory-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL SCREENS
+========================================================= */
+
+@media (max-width: 400px) {
+
+  .admin-topbar h1 {
+    font-size: 21px;
+  }
+
+  .section-heading {
+    flex-direction: column;
+  }
+
+  .refresh-btn {
+    width: 100%;
+  }
+
+  .inventory-card {
+    padding: 17px;
+  }
+}

@@ -124,10 +124,6 @@ function Login() {
             )}
           </div>
 
-          <Link to="/forgot-password" className="forgot-password-link">
-            Forgot Password?
-          </Link>
-
           {/* OPTIONS */}
 
           <div className="login-options">
@@ -135,7 +131,6 @@ function Login() {
               <input type="checkbox" />
               Remember me
             </label>
-
             <Link to="/forgot-password">Forgot Password?</Link>
           </div>
 

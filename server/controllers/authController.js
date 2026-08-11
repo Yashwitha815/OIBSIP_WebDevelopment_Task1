@@ -566,3 +566,87 @@ export const getMe = async (req, res) => {
     });
   }
 };
+
+
+// ======================================================
+// @desc    Admin Login
+// @route   POST /api/auth/admin/login
+// @access  Public
+// ======================================================
+
+export const adminLogin = async (req, res) => {
+  try {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        success: false,
+        errors: errors.array(),
+      });
+    }
+
+    const { email, password } = req.body;
+
+    // Find user
+    const user = await User.findOne({
+      email: email.toLowerCase(),
+    });
+
+    // Don't reveal whether the email exists
+    if (!user) {
+      return res.status(401).json({
+        success: false,
+        message: "Invalid admin credentials",
+      });
+    }
+
+    // IMPORTANT:
+    // Only users with role = admin can use admin login
+    if (user.role !== "admin") {
+      return res.status(403).json({
+        success: false,
+        message: "Access denied. Admins only.",
+      });
+    }
+
+    // Check password
+    const isMatch = await bcrypt.compare(
+      password,
+      user.password
+    );
+
+    if (!isMatch) {
+      return res.status(401).json({
+        success: false,
+        message: "Invalid admin credentials",
+      });
+    }
+
+    // Generate JWT
+    const token = generateToken(
+      user._id,
+      user.role
+    );
+
+    return res.status(200).json({
+      success: true,
+      message: "Admin login successful",
+
+      token,
+
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+      },
+    });
+  } catch (error) {
+    console.error("Admin Login Error:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Admin login failed",
+    });
+  }
+};

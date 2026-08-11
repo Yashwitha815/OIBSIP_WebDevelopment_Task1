@@ -4,6 +4,7 @@ import { body } from "express-validator";
 import {
   registerUser,
   loginUser,
+  adminLogin,
   getMe,
   verifyEmail,
   forgotPassword,
@@ -80,6 +81,25 @@ router.post(
   loginUser
 );
 
+// ======================================================
+// ADMIN LOGIN
+// POST /api/auth/admin/login
+// ======================================================
+
+router.post(
+  "/admin/login",
+  [
+    body("email")
+      .trim()
+      .isEmail()
+      .withMessage("Enter a valid email"),
+
+    body("password")
+      .notEmpty()
+      .withMessage("Password is required"),
+  ],
+  adminLogin
+);
 // ======================================================
 // VERIFY EMAIL
 // GET /api/auth/verify-email/:token
