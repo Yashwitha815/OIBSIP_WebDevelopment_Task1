@@ -111,13 +111,6 @@ function Navbar() {
         >
           Menu
         </NavLink>
-
-        <NavLink
-          to="/offers"
-          className={({ isActive }) => (isActive ? "active-link" : "")}
-        >
-          Offers
-        </NavLink>
       </nav>
 
       {/* ==========================

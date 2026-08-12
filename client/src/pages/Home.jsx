@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 import Hero from "../components/home/Hero";
-import Services from "../components/home/Services";
+
 import PizzaCard from "../components/home/PizzaCard";
 
 function Home() {
@@ -12,9 +12,7 @@ function Home() {
   useEffect(() => {
     const loadPizzas = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:5000/api/pizzas"
-        );
+        const response = await axios.get("http://localhost:5000/api/pizzas");
 
         setPizzas(response.data);
       } catch (error) {
@@ -26,23 +24,16 @@ function Home() {
   }, []);
 
   // Show only featured pizzas on Home page
-  const featuredPizzas = pizzas.filter(
-    (pizza) => pizza.featured === true
-  );
+  const featuredPizzas = pizzas.filter((pizza) => pizza.featured === true);
 
   return (
     <>
       {/* Hero Section */}
       <Hero />
 
-      {/* Services Section */}
-      <Services />
-
       {/* Popular Pizzas */}
       <section className="menu-section">
-        <h2 className="section-title">
-          🍕 Our Popular Pizzas
-        </h2>
+        <h2 className="section-title">🍕 Our Popular Pizzas</h2>
 
         <p className="section-subtitle">
           Freshly baked pizzas made with premium ingredients.
@@ -51,15 +42,10 @@ function Home() {
         <div className="pizza-grid">
           {featuredPizzas.length > 0 ? (
             featuredPizzas.map((pizza) => (
-              <PizzaCard
-                key={pizza._id}
-                pizza={pizza}
-              />
+              <PizzaCard key={pizza._id} pizza={pizza} />
             ))
           ) : (
-            <p className="no-pizzas">
-              🍕 No featured pizzas available.
-            </p>
+            <p className="no-pizzas">🍕 No featured pizzas available.</p>
           )}
         </div>
       </section>

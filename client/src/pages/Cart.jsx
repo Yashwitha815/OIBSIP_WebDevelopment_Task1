@@ -2,7 +2,6 @@ import { useSelector } from "react-redux";
 
 import CartItem from "../components/cart/CartItem";
 import CartSummary from "../components/cart/CartSummary";
-import CouponBox from "../components/cart/CouponBox";
 import EmptyCart from "../components/cart/EmptyCart";
 
 import "../styles/Cart.css";
@@ -30,7 +29,6 @@ const Cart = () => {
           </div>
 
           <div className="cart-right">
-            <CouponBox />
             <CartSummary />
           </div>
         </div>

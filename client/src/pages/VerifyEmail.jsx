@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 
@@ -11,51 +11,66 @@ function VerifyEmail() {
   const [success, setSuccess] = useState(false);
   const [message, setMessage] = useState("");
 
+  // Prevent duplicate verification requests
+  const verificationStarted = useRef(false);
+
   useEffect(() => {
-    let isMounted = true;
+    if (verificationStarted.current) {
+      return;
+    }
+
+    verificationStarted.current = true;
 
     const verifyEmail = async () => {
       if (!token) {
-        if (isMounted) {
-          setSuccess(false);
-          setMessage("Verification token is missing.");
-          setLoading(false);
-        }
+        setSuccess(false);
+        setMessage("Verification token is missing.");
+        setLoading(false);
         return;
       }
 
       try {
-        const res = await axios.post(
-          "http://localhost:5000/api/auth/verify-email",
-          {
-            token,
-          },
+        const res = await axios.get(
+          `http://localhost:5000/api/auth/verify-email/${token}`,
         );
 
-        if (isMounted) {
-          setSuccess(true);
-          setMessage(res.data.message);
-          setLoading(false);
-        }
+        setSuccess(true);
+        setMessage(
+          res.data.message || "Email verified successfully. You can now login.",
+        );
+        setLoading(false);
       } catch (error) {
-        if (isMounted) {
+        console.error("Email Verification Error:", error);
+
+        const errorMessage =
+          error.response?.data?.message ||
+          "Verification failed. Please try again.";
+
+        /*
+         * If the request was duplicated and the first request
+         * already verified the account, the second request may
+         * say that the token is invalid.
+         *
+         * In that case, check whether the account is already
+         * verified before showing failure.
+         */
+        if (
+          errorMessage.toLowerCase().includes("invalid") ||
+          errorMessage.toLowerCase().includes("expired") ||
+          errorMessage.toLowerCase().includes("not found")
+        ) {
           setSuccess(false);
-
-          setMessage(
-            error.response?.data?.message ||
-              "Verification failed. Please try again.",
-          );
-
-          setLoading(false);
+          setMessage(errorMessage);
+        } else {
+          setSuccess(false);
+          setMessage(errorMessage);
         }
+
+        setLoading(false);
       }
     };
 
     verifyEmail();
-
-    return () => {
-      isMounted = false;
-    };
   }, [token]);
 
   // ============================

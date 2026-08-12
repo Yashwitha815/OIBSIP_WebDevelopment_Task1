@@ -39,17 +39,13 @@ function Services() {
     <section className="services">
       <div className="section-header">
         <h2>Discover PizzaVerse</h2>
-        <p>
-          Everything you need for an unforgettable pizza experience.
-        </p>
+        <p>Everything you need for an unforgettable pizza experience.</p>
       </div>
 
       <div className="services-grid">
         {services.map((service, index) => (
           <div className="service-card" key={index}>
-            <div className="service-icon">
-              {service.icon}
-            </div>
+            <div className="service-icon">{service.icon}</div>
 
             <h3>{service.title}</h3>
 

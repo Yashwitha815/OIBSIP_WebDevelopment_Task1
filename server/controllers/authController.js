@@ -59,25 +59,34 @@ export const registerUser = async (req, res) => {
       salt
     );
 
-    // Generate Verification Token
-    const verificationToken = crypto
-      .randomBytes(32)
-      .toString("hex");
+    const verificationToken = crypto.randomBytes(32).toString("hex");
 
-    // Create User
-    const user = await User.create({
-      name,
-      email: email.toLowerCase(),
-      password: hashedPassword,
+const verificationTokenExpires = new Date(
+  Date.now() + 24 * 60 * 60 * 1000
+);
 
-      isVerified: false,
+const user = await User.create({
+  name,
+  email,
+  password: hashedPassword,
 
-      verificationToken,
+  isVerified: false,
 
-      verificationTokenExpires:
-        Date.now() + 24 * 60 * 60 * 1000,
-    });
+  verificationToken,
+  verificationTokenExpires,
 
+  role: "user",
+});
+
+console.log("=================================");
+console.log("NEW USER CREATED");
+console.log("Email:", user.email);
+console.log("Verification token:", user.verificationToken);
+console.log(
+  "Token expiry:",
+  user.verificationTokenExpires
+);
+console.log("=================================");
     // Verification URL
     const verifyURL =
       `${process.env.CLIENT_URL}/verify-email/${verificationToken}`;
@@ -245,52 +254,65 @@ export const loginUser = async (req, res) => {
   }
 };
 
-// ======================================================
-// @desc    Verify Email
-// @route   GET /api/auth/verify-email/:token
-// @access  Public
-// ======================================================
-
 export const verifyEmail = async (req, res) => {
   try {
     const { token } = req.params;
 
+    if (!token) {
+      return res.status(400).json({
+        success: false,
+        message: "Verification token is missing.",
+      });
+    }
+
+    console.log("=================================");
+    console.log("VERIFY EMAIL");
+    console.log("Token:", token);
+    console.log("=================================");
+
     const user = await User.findOne({
       verificationToken: token,
-      verificationTokenExpires: {
-        $gt: Date.now(),
-      },
     });
 
     if (!user) {
       return res.status(400).json({
         success: false,
-        message:
-          "Invalid or expired verification link.",
+        message: "Invalid or expired verification link.",
       });
     }
 
-    // Mark account as verified
+    // Check whether token expired
+    if (
+      user.verificationTokenExpires &&
+      user.verificationTokenExpires.getTime() < Date.now()
+    ) {
+      return res.status(400).json({
+        success: false,
+        message: "Verification token has expired.",
+      });
+    }
+
+    // Verify account
     user.isVerified = true;
 
-    // Remove verification token
+    // Remove token after successful verification
     user.verificationToken = null;
     user.verificationTokenExpires = null;
 
     await user.save();
 
+    console.log("EMAIL VERIFIED:", user.email);
+
     return res.status(200).json({
       success: true,
-      message:
-        "Email verified successfully. You can now login.",
+      message: "Email verified successfully. You can now login.",
     });
-
   } catch (error) {
     console.error("Verify Email Error:", error);
 
     return res.status(500).json({
       success: false,
-      message: error.message,
+      message: "Server error during email verification.",
     });
   }
 };
