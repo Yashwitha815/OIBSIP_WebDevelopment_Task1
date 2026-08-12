@@ -34,8 +34,23 @@ const orderItemSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+
+    size: {
+      type: String,
+      default: "",
+    },
+
+    crust: {
+      type: String,
+      default: "",
+    },
+
+    toppings: {
+      type: [String],
+      default: [],
+    },
   },
-  { _id: false }
+  { _id: false },
 );
 
 const orderSchema = new mongoose.Schema(
@@ -102,6 +117,20 @@ const orderSchema = new mongoose.Schema(
       default: "Order Received",
     },
 
+    // ======================================================
+    // INVENTORY TRACKING
+    // ======================================================
+
+    stockDeducted: {
+      type: Boolean,
+      default: false,
+    },
+
+    stockDeductedAt: {
+      type: Date,
+      default: null,
+    },
+
     paymentStatus: {
       type: String,
       enum: ["Pending", "Paid", "Failed"],
@@ -110,7 +139,8 @@ const orderSchema = new mongoose.Schema(
 
     paymentMethod: {
       type: String,
-      default: "Razorpay",
+      enum: ["Razorpay", "COD"],
+      default: "COD",
     },
 
     razorpayOrderId: {
@@ -125,7 +155,7 @@ const orderSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 export default mongoose.model("Order", orderSchema);

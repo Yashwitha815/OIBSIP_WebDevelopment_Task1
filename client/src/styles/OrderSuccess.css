@@ -1,0 +1,69 @@
+.order-success-page {
+  min-height: calc(100vh - 160px);
+  padding: 70px 20px;
+  display: grid;
+  place-items: center;
+  background: #f8f9fb;
+}
+
+.success-card {
+  width: min(620px, 100%);
+  background: #fff;
+  border-radius: 24px;
+  padding: 45px 35px;
+  text-align: center;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.08);
+}
+
+.success-icon {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 20px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #dcfce7;
+  color: #16a34a;
+  font-size: 38px;
+  font-weight: 800;
+}
+
+.success-label {
+  color: #16a34a;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.success-card h1 {
+  margin: 10px 0;
+  color: #171717;
+  font-size: 32px;
+}
+
+.success-card > p:not(.success-label) {
+  color: #707070;
+  line-height: 1.6;
+}
+
+.success-order-id {
+  display: flex;
+  justify-content: space-between;
+  margin: 28px 0;
+  padding: 15px 18px;
+  border-radius: 12px;
+  background: #fff7f2;
+}
+
+.success-order-id span {
+  color: #777;
+}
+
+.success-order-id strong {
+  color: #ff6b35;
+}
+
+.success-card button {
+  width: 100%;
+  font-size: 16px;
+}

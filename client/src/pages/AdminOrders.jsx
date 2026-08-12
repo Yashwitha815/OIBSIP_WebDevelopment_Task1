@@ -536,6 +536,15 @@ function AdminOrders() {
 
             <span>Orders</span>
           </button>
+
+          <button
+            className="admin-nav-item"
+            type="button"
+            onClick={() => navigate("/admin/recipes")}
+          >
+            <span className="admin-nav-icon">🍕</span>
+            <span>Pizza Recipes</span>
+          </button>
         </nav>
 
         <button className="admin-logout" type="button" onClick={handleLogout}>

@@ -5,7 +5,9 @@ import authService from "./authService";
 // Get user from localStorage
 // ==========================
 
-const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+const userInfo = JSON.parse(
+  localStorage.getItem("userInfo")
+);
 
 const initialState = {
   userInfo: userInfo || null,
@@ -72,6 +74,19 @@ const authSlice = createSlice({
       state.error = false;
       state.message = "";
     },
+
+    // ==========================================
+    // UPDATE USER INFO AFTER PROFILE EDIT
+    // ==========================================
+
+    setUserInfo: (state, action) => {
+      state.userInfo = action.payload;
+      state.isAuthenticated = !!action.payload;
+    },
+
+    // ==========================================
+    // LOGOUT
+    // ==========================================
 
     logout: (state) => {
       authService.logout();
@@ -144,6 +159,10 @@ const authSlice = createSlice({
   },
 });
 
-export const { reset, logout } = authSlice.actions;
+export const {
+  reset,
+  logout,
+  setUserInfo,
+} = authSlice.actions;
 
 export default authSlice.reducer;

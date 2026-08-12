@@ -2,9 +2,12 @@ import express from "express";
 
 import {
   createOrder,
+  createRazorpayOrder,
+  verifyRazorpayPayment,
   getAllOrders,
   getOrderById,
   updateOrderStatus,
+  getMyOrders,
 } from "../controllers/orderController.js";
 
 import authMiddleware from "../middleware/authMiddleware.js";
@@ -13,50 +16,51 @@ import adminMiddleware from "../middleware/adminMiddleware.js";
 const router = express.Router();
 
 // ======================================================
-// CREATE ORDER - USER
-// POST /api/orders
+// USER CHECKOUT
 // ======================================================
+
+router.post("/", authMiddleware, createOrder);
 
 router.post(
-  "/",
+  "/razorpay/create",
   authMiddleware,
-  createOrder
+  createRazorpayOrder,
 );
 
+router.post(
+  "/razorpay/verify",
+  authMiddleware,
+  verifyRazorpayPayment,
+);
+
+router.get(
+  "/my-orders",
+  authMiddleware,
+  getMyOrders,
+);
 // ======================================================
-// ADMIN - GET ALL ORDERS
-// GET /api/orders/admin
+// ADMIN - ORDERS
 // ======================================================
 
 router.get(
   "/admin",
   authMiddleware,
   adminMiddleware,
-  getAllOrders
+  getAllOrders,
 );
-
-// ======================================================
-// ADMIN - GET SINGLE ORDER
-// GET /api/orders/admin/:id
-// ======================================================
 
 router.get(
   "/admin/:id",
   authMiddleware,
   adminMiddleware,
-  getOrderById
+  getOrderById,
 );
-
-// ======================================================
-// ADMIN - UPDATE ORDER STATUS
-// PUT /api/orders/admin/:id/status
-// ======================================================
 
 router.put(
   "/admin/:id/status",
   authMiddleware,
   adminMiddleware,
-  updateOrderStatus
+  updateOrderStatus,
 );
 
 export default router;

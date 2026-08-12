@@ -1,7 +1,9 @@
 import "../../styles/CartSummary.css";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const CartSummary = () => {
+  const navigate = useNavigate();
   const cartItems = useSelector((state) => state.cart.cartItems);
 
   const subtotal = cartItems.reduce(
@@ -89,7 +91,9 @@ const CartSummary = () => {
         <span>₹{total.toFixed(2)}</span>
       </div>
 
-      <button className="checkout-btn">Proceed to Checkout</button>
+      <button className="checkout-btn" onClick={() => navigate("/checkout")}>
+        Proceed to Checkout
+      </button>
 
       <p className="secure-checkout">🔒 100% Secure Checkout</p>
     </div>

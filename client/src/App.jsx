@@ -11,6 +11,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Offers from "./pages/Offers";
 import Wishlist from "./pages/Wishlist";
+
 import VerifyEmail from "./pages/VerifyEmail";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
@@ -18,6 +19,13 @@ import ResetPassword from "./pages/ResetPassword";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminOrders from "./pages/AdminOrders";
+
+import Checkout from "./pages/Checkout";
+import OrderSuccess from "./pages/OrderSuccess";
+import Orders from "./pages/Orders";
+
+import Profile from "./pages/Profile";
+import PizzaRecipes from "./pages/PizzaRecipes";
 
 import FloatingCart from "./components/cart/FloatingCart";
 import CustomizePizzaModal from "./components/pizza/CustomizePizzaModal";
@@ -60,6 +68,36 @@ function App() {
 
         <Route path="/admin/orders" element={<AdminOrders />} />
 
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+
+        <Route path="/admin/recipes" element={<PizzaRecipes />} />
+
+        {/* ==================================================
+            CUSTOMER ORDER TRACKING
+        ================================================== */}
+
+        <Route
+          path="/orders"
+          element={
+            <ProtectedRoute>
+              <Orders />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* ==================================================
+            CUSTOMER PROFILE
+        ================================================== */}
+
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
+
         {/* ==================================================
             USER PROTECTED PAGES
         ================================================== */}
@@ -74,6 +112,24 @@ function App() {
         />
 
         <Route
+          path="/checkout"
+          element={
+            <ProtectedRoute>
+              <Checkout />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/order-success/:orderId"
+          element={
+            <ProtectedRoute>
+              <OrderSuccess />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
           path="/wishlist"
           element={
             <ProtectedRoute>
@@ -81,12 +137,6 @@ function App() {
             </ProtectedRoute>
           }
         />
-
-        {/* ==================================================
-            ADMIN DASHBOARD
-        ================================================== */}
-
-        <Route path="/admin/dashboard" element={<AdminDashboard />} />
       </Routes>
 
       {/* ==================================================

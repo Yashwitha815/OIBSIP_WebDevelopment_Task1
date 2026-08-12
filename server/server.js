@@ -3,19 +3,28 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import connectDB from "./config/db.js";
+
 import pizzaRoutes from "./routes/pizzaRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import inventoryRoutes from "./routes/inventoryRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
+import profileRoutes from "./routes/profileRoutes.js";
+import recipeRoutes from "./routes/recipeRoutes.js";
 
 dotenv.config();
 
-// Connect to MongoDB
+// ======================================================
+// DATABASE
+// ======================================================
+
 connectDB();
 
 const app = express();
 
-// Middleware
+// ======================================================
+// CORS
+// ======================================================
+
 app.use(
   cors({
     origin: "http://localhost:5173",
@@ -23,24 +32,50 @@ app.use(
   })
 );
 
-// Parse JSON Request Body
+// ======================================================
+// BODY PARSERS
+// ======================================================
+
 app.use(express.json());
 
-// Parse URL Encoded Form Data
-app.use(express.urlencoded({ extended: true }));
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
 
-// Routes
+// ======================================================
+// ROUTES
+// ======================================================
+
 app.use("/api/auth", authRoutes);
+
+app.use("/api/profile", profileRoutes);
+
 app.use("/api/inventory", inventoryRoutes);
+
 app.use("/api/pizzas", pizzaRoutes);
+
 app.use("/api/orders", orderRoutes);
+
+app.use("/api/recipes", recipeRoutes);
+
+// ======================================================
+// ROOT
+// ======================================================
 
 app.get("/", (req, res) => {
   res.send("🍕 PizzaVerse Backend Running...");
 });
 
+// ======================================================
+// SERVER
+// ======================================================
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
+  console.log(
+    `🚀 Server running on http://localhost:${PORT}`
+  );
 });
