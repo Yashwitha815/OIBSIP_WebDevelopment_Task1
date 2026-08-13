@@ -161,30 +161,55 @@
 
 PizzaVerse/
 ├── client/                     # Frontend React Application
+
 │   ├── src/
+
 │   │   ├── app/                # Redux store configuration
+
 │   │   ├── components/         # Reusable UI components (Navbar, Footer, Modals)
+
 │   │   ├── features/           # Redux slices (auth, cart, orders)
+
 │   │   ├── pages/              # View pages (Home, Menu, Cart, Checkout, Admin, etc.)
+
 │   │   ├── utils/              # API helpers and axios configuration
+
 │   │   ├── App.jsx             # Main router configuration
+
 │   │   └── main.jsx            # Application entry point
+
 │   ├── package.json
+
 │   └── vite.config.js
+
 │
+
 ├── server/                     # Backend Express API
+
 │   ├── config/                 # Database configuration (db.js)
+
 │   ├── controllers/            # Route controllers (auth, order, inventory, recipe)
+
 │   ├── middleware/             # Auth & Admin route guards
+
 │   ├── models/                 # Mongoose Schemas (User, Order, Inventory, PizzaRecipe, Pizza)
+
 │   ├── routes/                 # Express API routes
+
 │   ├── utils/                  # Mailer and token utilities
+
 │   ├── seedPizzaRecipes.js     # Recipe seeder script
+
 │   ├── createAdmin.js          # Admin account setup script
+
 │   ├── createInventory.js      # Inventory seeder script
+
 │   ├── server.js               # Express server entry point
+
 │   └── package.json
+
 │
+
 └── README.md                   # Project documentation
 
 ## ⚙️ Installation / Setup
@@ -268,37 +293,49 @@ The app will be available at `http://localhost:5173`.
 ### 🍕 Pizza Menu & Customization
 
 ![Menu Search](./screenshots/menu_header.png)
+
 ![Pizza Menu Grid](./screenshots/menu_grid.png)
+
 ![Pizza Customization Modal](./screenshots/pizza_customize.png)
 
 ### 🛒 Cart & Quick Checkout Bar
 
 ![Cart Page](./screenshots/cart.png)
+
 ![Floating Cart Bar](./screenshots/floating_cart.png)
 
 ### 👨‍💼User Profile
 
 ![User Profile](![alt text](<User Profile 1.png>))
+
 ![alt text](<User Profile 2.png>)
 
 ### 💳 Checkout & Razorpay Payment Sandbox
 
 ![Cash on Delivery](./screenshots/checkout_cod.png)
+
 ![Razorpay Online Payment](./screenshots/checkout_online.png)
+
 ![Razorpay Gateway Modal](./screenshots/razorpay_modal.png)
+
 ![Razorpay Demo Bank Page](./screenshots/razorpay_bank.png)
+
 ![Razorpay Payment Successful](./screenshots/razorpay_success.png)
 
 ### 🎉 Order Confirmation & Live Tracking
 
 ![Order Success](./screenshots/order_success.png)
+
 ![Live Order Tracking](./screenshots/order_tracking.png)
 
 ### 👨‍💼 Admin Portal, Orders, Recipes & Inventory Management
 
 ![Admin Login](./screenshots/admin_login.png)
+
 ![Admin Order Management](./screenshots/admin_orders.png)
+
 ![Admin Inventory Dashboard](./screenshots/admin_inventory.png)
+
 ![Admin Pizza Recipe Management](./screenshots/admin_recipes.png)
 
 ### ❤️ My Wishlist
@@ -308,6 +345,7 @@ The app will be available at `http://localhost:5173`.
 ### 📝 User Registration & Login
 
 ![User Registration](./screenshots/register.png)
+
 ![User Login](./screenshots/login.png)
 
 ### 📌 Footer & Contact Info
