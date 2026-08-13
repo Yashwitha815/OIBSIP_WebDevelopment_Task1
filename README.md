@@ -160,23 +160,23 @@
 ## 🏗️ Project Architecture
 
 PizzaVerse/
-client/                     # Frontend React Application
+client/ # Frontend React Application
 
- src/
+src/
 
- app/                # Redux store configuration
+app/ # Redux store configuration
 
-components/         # Reusable UI components (Navbar, Footer, Modals)
+components/ # Reusable UI components (Navbar, Footer, Modals)
 
-features/           # Redux slices (auth, cart, orders)
+features/ # Redux slices (auth, cart, orders)
 
-pages/              # View pages (Home, Menu, Cart, Checkout, Admin, etc.)
+pages/ # View pages (Home, Menu, Cart, Checkout, Admin, etc.)
 
-utils/              # API helpers and axios configuration
+utils/ # API helpers and axios configuration
 
- App.jsx             # Main router configuration
+App.jsx # Main router configuration
 
-main.jsx            # Application entry point
+main.jsx # Application entry point
 
 package.json
 
@@ -184,31 +184,31 @@ vite.config.js
 
 │
 
-server/                     # Backend Express API
+server/ # Backend Express API
 
- config/                 # Database configuration (db.js)
+config/ # Database configuration (db.js)
 
-controllers/            # Route controllers (auth, order, inventory, recipe)
+controllers/ # Route controllers (auth, order, inventory, recipe)
 
- middleware/             # Auth & Admin route guards
+middleware/ # Auth & Admin route guards
 
-models/                 # Mongoose Schemas (User, Order, Inventory, PizzaRecipe, Pizza)
+models/ # Mongoose Schemas (User, Order, Inventory, PizzaRecipe, Pizza)
 
- routes/                 # Express API routes
+routes/ # Express API routes
 
- utils/                  # Mailer and token utilities
+utils/ # Mailer and token utilities
 
- seedPizzaRecipes.js     # Recipe seeder script
+seedPizzaRecipes.js # Recipe seeder script
 
- createAdmin.js          # Admin account setup script
+createAdmin.js # Admin account setup script
 
-createInventory.js      # Inventory seeder script
+createInventory.js # Inventory seeder script
 
-server.js               # Express server entry point
+server.js # Express server entry point
 
 package.json
 
-README.md                   # Project documentation
+README.md # Project documentation
 
 ## ⚙️ Installation / Setup
 
@@ -304,7 +304,7 @@ The app will be available at `http://localhost:5173`.
 
 ### 👨‍💼User Profile
 
-![User Profile](![alt text](<User Profile 1.png>))
+![alt text](<User Profile 1.png>)
 
 ![alt text](<User Profile 2.png>)
 
